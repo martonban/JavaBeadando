@@ -59,7 +59,7 @@ public class AddLapTime extends JDialog {
 		getContentPane().add(lblTrack);
 		
 		textField = new JTextField();
-		textField.setBounds(73, 49, 40, 19);
+		textField.setBounds(59, 49, 40, 19);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -155,12 +155,12 @@ public class AddLapTime extends JDialog {
 		
 		textField_10 = new JTextField();
 		textField_10.setColumns(10);
-		textField_10.setBounds(241, 49, 40, 19);
+		textField_10.setBounds(208, 48, 40, 19);
 		getContentPane().add(textField_10);
 		
 		JLabel lblDriverId = new JLabel("Driver ID:");
 		lblDriverId.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
-		lblDriverId.setBounds(146, 49, 85, 18);
+		lblDriverId.setBounds(133, 48, 85, 18);
 		getContentPane().add(lblDriverId);
 		
 		JLabel lblCompount = new JLabel("Compount:");
@@ -175,14 +175,14 @@ public class AddLapTime extends JDialog {
 		
 		textField_11 = new JTextField();
 		textField_11.setColumns(10);
-		textField_11.setBounds(100, 274, 40, 19);
+		textField_11.setBounds(83, 274, 40, 19);
 		getContentPane().add(textField_11);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(271, 273, 72, 21);
 		getContentPane().add(comboBox);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Back");
 		btnNewButton.setFont(new Font("Tahoma", Font.ITALIC, 9));
 		btnNewButton.setBounds(221, 355, 85, 21);
 		getContentPane().add(btnNewButton);
