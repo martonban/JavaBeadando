@@ -37,7 +37,7 @@ public class Convert extends JDialog {
 		
 		JLabel lblConvert = new JLabel("Convert");
 		lblConvert.setFont(new Font("Mongolian Baiti", Font.BOLD, 27));
-		lblConvert.setBounds(168, 10, 192, 22);
+		lblConvert.setBounds(152, 10, 192, 22);
 		getContentPane().add(lblConvert);
 		
 		JLabel lblOnverTopath = new JLabel("Conver to (path):");
