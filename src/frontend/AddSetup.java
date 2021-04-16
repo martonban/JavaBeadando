@@ -65,7 +65,7 @@ public class AddSetup extends JDialog {
 		lblCarId.setBounds(10, 30, 93, 18);
 		getContentPane().add(lblCarId);
 		
-		JLabel lblDriverId = new JLabel("Driver ID:");
+		JLabel lblDriverId = new JLabel("Car ID:");
 		lblDriverId.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblDriverId.setBounds(10, 102, 72, 18);
 		getContentPane().add(lblDriverId);
