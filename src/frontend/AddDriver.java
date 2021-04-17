@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -140,32 +142,84 @@ public class AddDriver extends JDialog {
 		JButton btnNewButton_1 = new JButton("Add Driver");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				boolean canInsert = true;
-				
 				//ID KIOSZTÁS
 				int id = dbm.makeNewID("driver", "did");
 				
-				//NAME
-				String name = null;
-				if(data.isEmpty(nameField.getText())) {
-					canInsert = false;
+				int number = 0;
+				String numberOfDriver = numberField.getText();
+				if(data.isThatInt(numberOfDriver)) {
+					number = data.convertToIntBasic(numberOfDriver);
 				}else {
-					name  = nameField.getText();
+					canInsert = false;
+					CustomNotification("A Versenyzõ száma nem szám típusú",0);
 				}
 				
-				int number=0;
-				if(data.isEmpty(numberField.getText())) {
+				String name = nameField.getText();
+				if(data.isEmpty(name)) {
 					canInsert = false;
-				}else {
-					number = data.convertToInt(numberField);
+					CustomNotification("A Versenyzõ neve mezejében nincsen semmi",0);
 				}
 				
-				double avg = data.convertToDouble(avgField);
-				int start = data.convertToInt(startField);
-				int poles = data.convertToInt(polesField);
-				int wins = data.convertToInt(winsField);
+				String startStr = startField.getText();
+				int start = 0;
+				if(data.isThatInt(startStr)) {
+					start = data.convertToIntBasic(startStr);
+				}else {
+					canInsert = false;
+					CustomNotification("Nem szám típusu adat az indulások számánál", 0);
+				}
 				
+				
+				String avgFinishStr = avgField.getText();
+				double avgFinish = 0;
+				if(data.isThatIDouble(avgFinishStr)) {
+					avgFinish = data.convertToDoubleBasic(avgFinishStr); 
+				}else {
+					canInsert = false;
+					CustomNotification("Nem double típusú az átalgos finish mezõ!(A tizedes az . nem ,)", 0);
+				}
+				
+				String numberOfPoleStr = polesField.getText();
+				int numberOfPole = 0;
+				if(data.isThatInt(numberOfPoleStr)) {
+					numberOfPole = data.convertToIntBasic(numberOfPoleStr);
+				}else {
+					canInsert = false;
+					CustomNotification("Nem szám típusú a pol poziciók száma!", 0);
+				}
+				
+				String numberOfWinsStr = winsField.getText();
+				int wins = 0;
+				if(data.isThatInt(numberOfWinsStr)) {
+					wins = data.convertToIntBasic(numberOfWinsStr);
+				}else {
+					canInsert = false;
+					CustomNotification("Nem szám típusu a gyõzelmek száma",0);
+				}
+				
+				String CIDStr = IDField.getText();
+				int cid = 0;
+				if(data.isThatInt(CIDStr)) {
+					cid = data.convertToIntBasic(CIDStr);
+					if(dbm.existStuffInt("car", "cid", cid)) {
+						System.out.println("Cool");
+					}else {
+						CustomNotification("Nem létezõ autóra hivatkozott", 0);
+					}
+				}else {
+					canInsert = false;
+					CustomNotification("Nem szám típusu a gyõzelmek száma",0);
+				}
+				
+				
+				//Insert
+				if(canInsert) {
+					String sqlp = "insert into driver values("+id+", "+number+", '"+name+"', "+start+", "+avgFinish+", "+numberOfPole+", "+wins+", "+cid+");";
+					dbm.CommandExecute(sqlp);
+				}else {
+					System.out.println("");
+				}
 				
 				
 				
@@ -176,4 +230,9 @@ public class AddDriver extends JDialog {
 		getContentPane().add(btnNewButton_1);
 
 	}
+	public static void CustomNotification(String msg, int sign) {
+		JOptionPane.showMessageDialog(null, msg, "Vigyázat!", sign);
+	}
+
+	
 }
