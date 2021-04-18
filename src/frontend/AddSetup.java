@@ -4,32 +4,42 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import backend.DBMethods;
+import backend.DataTreat;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddSetup extends JDialog {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_20;
-	private JTextField textField_18;
-	private JTextField textField_19;
+	private JTextField nameFied;
+	private JTextField carIDField;
+	private JTextField rwaF;
+	private JTextField fwaF;
+	private JTextField daofftF;
+	private JTextField daontF;
+	private JTextField rtpF;
+	private JTextField tftpF;
+	private JTextField rcF;
+	private JTextField fcF;
+	private JTextField ftF;
+	private JTextField rtF;
+	private JTextField fsF;
+	private JTextField rsF;
+	private JTextField farbF;
+	private JTextField rarbF;
+	private JTextField rrhF;
+	private JTextField frhF;
+	private JTextField balanceF;
+	private JTextField bpF;
+	private JTextField fbbF;
+	private DBMethods dbm = new DBMethods();
+	private DataTreat data = new DataTreat();
 
 	/**
 	 * Launch the application.
@@ -52,6 +62,8 @@ public class AddSetup extends JDialog {
 	 * Create the dialog.
 	 */
 	public AddSetup() {
+		dbm.Reg();
+		dbm.Connect();
 		setBounds(100, 100, 730, 610);
 		getContentPane().setLayout(null);
 		
@@ -75,30 +87,30 @@ public class AddSetup extends JDialog {
 		lblNameOfThe.setBounds(10, 58, 130, 18);
 		getContentPane().add(lblNameOfThe);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 73, 130, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		nameFied = new JTextField();
+		nameFied.setBounds(10, 73, 130, 19);
+		getContentPane().add(nameFied);
+		nameFied.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 117, 130, 19);
-		getContentPane().add(textField_1);
+		carIDField = new JTextField();
+		carIDField.setColumns(10);
+		carIDField.setBounds(10, 117, 130, 19);
+		getContentPane().add(carIDField);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(10, 248, 130, 19);
-		getContentPane().add(textField_2);
+		rwaF = new JTextField();
+		rwaF.setColumns(10);
+		rwaF.setBounds(10, 248, 130, 19);
+		getContentPane().add(rwaF);
 		
 		JLabel lblRearWingAero = new JLabel("Rear Wing Aero: ");
 		lblRearWingAero.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblRearWingAero.setBounds(10, 233, 149, 18);
 		getContentPane().add(lblRearWingAero);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(10, 204, 130, 19);
-		getContentPane().add(textField_3);
+		fwaF = new JTextField();
+		fwaF.setColumns(10);
+		fwaF.setBounds(10, 204, 130, 19);
+		getContentPane().add(fwaF);
 		
 		JLabel lblFrontWingAero = new JLabel("Front Wing Aero:");
 		lblFrontWingAero.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
@@ -110,20 +122,20 @@ public class AddSetup extends JDialog {
 		lblAerodynamics.setBounds(10, 161, 119, 18);
 		getContentPane().add(lblAerodynamics);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(10, 379, 130, 19);
-		getContentPane().add(textField_4);
+		daofftF = new JTextField();
+		daofftF.setColumns(10);
+		daofftF.setBounds(10, 379, 130, 19);
+		getContentPane().add(daofftF);
 		
 		JLabel lblDifferentialAdjustmentOff = new JLabel("Differential Adjustment Off Throttle:");
 		lblDifferentialAdjustmentOff.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblDifferentialAdjustmentOff.setBounds(10, 364, 233, 18);
 		getContentPane().add(lblDifferentialAdjustmentOff);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(10, 335, 130, 19);
-		getContentPane().add(textField_5);
+		daontF = new JTextField();
+		daontF.setColumns(10);
+		daontF.setBounds(10, 335, 130, 19);
+		getContentPane().add(daontF);
 		
 		JLabel lblDifferentialAdjustmentOn = new JLabel("Differential Adjustment On Throttle:");
 		lblDifferentialAdjustmentOn.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
@@ -135,20 +147,20 @@ public class AddSetup extends JDialog {
 		lblTransmission.setBounds(10, 292, 119, 18);
 		getContentPane().add(lblTransmission);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(10, 509, 130, 19);
-		getContentPane().add(textField_6);
+		rtpF = new JTextField();
+		rtpF.setColumns(10);
+		rtpF.setBounds(10, 509, 130, 19);
+		getContentPane().add(rtpF);
 		
 		JLabel lblRearTyrePressure = new JLabel("Rear Tyre Pressure:");
 		lblRearTyrePressure.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblRearTyrePressure.setBounds(10, 494, 142, 18);
 		getContentPane().add(lblRearTyrePressure);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(10, 465, 130, 19);
-		getContentPane().add(textField_7);
+		tftpF = new JTextField();
+		tftpF.setColumns(10);
+		tftpF.setBounds(10, 465, 130, 19);
+		getContentPane().add(tftpF);
 		
 		JLabel lblTyresFrontTyre = new JLabel("Tyres Front Tyre Pressure:");
 		lblTyresFrontTyre.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
@@ -180,10 +192,10 @@ public class AddSetup extends JDialog {
 		lblPsi_2_1.setBounds(144, 382, 25, 18);
 		getContentPane().add(lblPsi_2_1);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(302, 117, 130, 19);
-		getContentPane().add(textField_8);
+		rcF = new JTextField();
+		rcF.setColumns(10);
+		rcF.setBounds(302, 117, 130, 19);
+		getContentPane().add(rcF);
 		
 		JLabel lblRearCamber = new JLabel("Rear Camber:");
 		lblRearCamber.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
@@ -195,10 +207,10 @@ public class AddSetup extends JDialog {
 		lblFrontCamber.setBounds(302, 58, 130, 18);
 		getContentPane().add(lblFrontCamber);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(302, 73, 130, 19);
-		getContentPane().add(textField_9);
+		fcF = new JTextField();
+		fcF.setColumns(10);
+		fcF.setBounds(302, 73, 130, 19);
+		getContentPane().add(fcF);
 		
 		JLabel lblSuspensionGeometry = new JLabel("Suspension Geometry");
 		lblSuspensionGeometry.setFont(new Font("Mongolian Baiti", Font.BOLD, 16));
@@ -210,20 +222,20 @@ public class AddSetup extends JDialog {
 		lblNameOfThe_1_1.setBounds(302, 145, 130, 18);
 		getContentPane().add(lblNameOfThe_1_1);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(302, 160, 130, 19);
-		getContentPane().add(textField_10);
+		ftF = new JTextField();
+		ftF.setColumns(10);
+		ftF.setBounds(302, 160, 130, 19);
+		getContentPane().add(ftF);
 		
 		JLabel lblDriverId_1_1 = new JLabel("Rear Toe:");
 		lblDriverId_1_1.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblDriverId_1_1.setBounds(302, 189, 72, 18);
 		getContentPane().add(lblDriverId_1_1);
 		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(302, 204, 130, 19);
-		getContentPane().add(textField_11);
+		rtF = new JTextField();
+		rtF.setColumns(10);
+		rtF.setBounds(302, 204, 130, 19);
+		getContentPane().add(rtF);
 		
 		JLabel lblSuspension = new JLabel("Suspension");
 		lblSuspension.setFont(new Font("Mongolian Baiti", Font.BOLD, 16));
@@ -235,55 +247,55 @@ public class AddSetup extends JDialog {
 		lblFontSuspension.setBounds(302, 287, 130, 18);
 		getContentPane().add(lblFontSuspension);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(302, 302, 130, 19);
-		getContentPane().add(textField_12);
+		fsF = new JTextField();
+		fsF.setColumns(10);
+		fsF.setBounds(302, 302, 130, 19);
+		getContentPane().add(fsF);
 		
 		JLabel lblRearSuspension = new JLabel("Rear Suspension:");
 		lblRearSuspension.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblRearSuspension.setBounds(302, 331, 130, 18);
 		getContentPane().add(lblRearSuspension);
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(302, 346, 130, 19);
-		getContentPane().add(textField_13);
+		rsF = new JTextField();
+		rsF.setColumns(10);
+		rsF.setBounds(302, 346, 130, 19);
+		getContentPane().add(rsF);
 		
 		JLabel lblNameOfThe_1_1_1 = new JLabel("Front Anti-Roll Bar:");
 		lblNameOfThe_1_1_1.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblNameOfThe_1_1_1.setBounds(302, 374, 130, 18);
 		getContentPane().add(lblNameOfThe_1_1_1);
 		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
-		textField_14.setBounds(302, 389, 130, 19);
-		getContentPane().add(textField_14);
+		farbF = new JTextField();
+		farbF.setColumns(10);
+		farbF.setBounds(302, 389, 130, 19);
+		getContentPane().add(farbF);
 		
 		JLabel lblDriverId_1_1_1 = new JLabel("Rear Anti-Roll Bar:");
 		lblDriverId_1_1_1.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblDriverId_1_1_1.setBounds(302, 418, 130, 18);
 		getContentPane().add(lblDriverId_1_1_1);
 		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(302, 433, 130, 19);
-		getContentPane().add(textField_15);
+		rarbF = new JTextField();
+		rarbF.setColumns(10);
+		rarbF.setBounds(302, 433, 130, 19);
+		getContentPane().add(rarbF);
 		
-		textField_16 = new JTextField();
-		textField_16.setColumns(10);
-		textField_16.setBounds(302, 524, 130, 19);
-		getContentPane().add(textField_16);
+		rrhF = new JTextField();
+		rrhF.setColumns(10);
+		rrhF.setBounds(302, 524, 130, 19);
+		getContentPane().add(rrhF);
 		
 		JLabel lblDriverId_1_1_1_1 = new JLabel("Rear Ride Height:");
 		lblDriverId_1_1_1_1.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblDriverId_1_1_1_1.setBounds(302, 509, 130, 18);
 		getContentPane().add(lblDriverId_1_1_1_1);
 		
-		textField_17 = new JTextField();
-		textField_17.setColumns(10);
-		textField_17.setBounds(302, 480, 130, 19);
-		getContentPane().add(textField_17);
+		frhF = new JTextField();
+		frhF.setColumns(10);
+		frhF.setBounds(302, 480, 130, 19);
+		getContentPane().add(frhF);
 		
 		JLabel lblNameOfThe_1_1_1_1 = new JLabel("Front Ride Height:");
 		lblNameOfThe_1_1_1_1.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
@@ -315,17 +327,247 @@ public class AddSetup extends JDialog {
 		lblBallast.setBounds(539, 201, 130, 18);
 		getContentPane().add(lblBallast);
 		
-		textField_20 = new JTextField();
-		textField_20.setColumns(10);
-		textField_20.setBounds(539, 216, 130, 19);
-		getContentPane().add(textField_20);
+		balanceF = new JTextField();
+		balanceF.setColumns(10);
+		balanceF.setBounds(539, 216, 130, 19);
+		getContentPane().add(balanceF);
 		
 		JButton btnNewButton = new JButton("Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.ITALIC, 9));
 		btnNewButton.setBounds(519, 259, 72, 37);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Initializing
+				boolean canInsert = true;
+				String name = nameFied.getText();
+				String carIDStr =  carIDField.getText();
+				String rwaStr = rwaF.getText();
+				String fwaStr = fwaF.getText();
+				String daofftStr = daofftF.getText();
+				String daontStr = daontF.getText();
+				String rtpStr = rtpF.getText();
+				String tftpStr = tftpF.getText();
+				String rcStr = rcF.getText();
+				String fcStr = fcF.getText();
+				String ftStr = ftF.getText();
+				String rtStr = rtF.getText();
+				String fsStr = fsF.getText();
+				String rsStr =  rsF.getText();
+				String farbStr = farbF.getText();
+				String rarbStr = rarbF.getText();
+				String rrhStr = rrhF.getText();
+				String frhStr = frhF.getText();
+				String balanceStr = balanceF.getText();
+				String bpStr = bpF.getText();
+				String fbbStr = fbbF.getText();
+				
+				int id = dbm.makeNewID("setup", "sid");
+				int balance = 0; 
+				
+				int carID =  0;
+				int rwa = 0;
+				int fwa= 0;
+
+				int daofft = 0;
+				int daont = 0;
+				
+				double rtp = 0;
+				double tftp = 0;
+				
+				double rc = 0;
+				double fc = 0;
+				double ft = 0;
+				double rt = 0;
+				
+				int fs = 0;
+				int rs =  0;
+				int farb = 0;
+				int rarb = 0;
+				int rrh = 0;
+				int frh = 0;
+				
+				int bp = 0;
+				int fbb = 0;
+
+				//Checks
+				//Basic Datas
+				
+				if(name.isEmpty()) {
+					CustomNotification("A név helye üres", 0);
+					canInsert = false; 
+				}
+				
+				
+				if(data.isThatInt(carIDStr)) {
+					carID = data.convertToIntBasic(carIDStr);
+					if(dbm.existStuffInt("car", "cid", carID)) {
+						System.out.println("cool");
+					}else {
+						CustomNotification("Nem létezõ kocsira hivatkozik!",0);
+						canInsert = false;
+					}
+				}else {
+					CustomNotification("Probléma van a CarID-val",0);
+					canInsert = false;
+				}
+			
+				
+				if(data.isThatInt(rwaStr)) {
+					rwa = data.convertToIntBasic(rwaStr);
+				}else {
+					CustomNotification("Probléma van a(z) Rear Wing Areo-val",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatInt(fwaStr)) {
+					fwa = data.convertToIntBasic(fwaStr);
+				}else {
+					CustomNotification("Probléma van a(z) Front Wing Areo-val!",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatInt(daofftStr)) {
+					daofft = data.convertToIntBasic(daofftStr);
+				}else {
+					CustomNotification("Probléma van a Differential Adjustment Off Throttle:",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatInt(daontStr)) {
+					daont = data.convertToIntBasic(daontStr);
+				}else {
+					CustomNotification("Probléma van a Differential Adjustment On Throttle:",0);
+					canInsert = false;
+				}
+			
+				
+				if(data.isThatIDouble(rtpStr)) {
+					rtp = data.convertToDoubleBasic(rtpStr);
+				}else {
+					CustomNotification("Probléma van a Rear Tyre Pressure",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatIDouble(tftpStr)) {
+					tftp = data.convertToDoubleBasic(tftpStr);
+				}else {
+					CustomNotification("Probléma van a Front Tyre Pressure",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatIDouble(rcStr)) {
+					rc = data.convertToDoubleBasic(rcStr);
+				}else {
+					CustomNotification("Probléma van a Rear Camber",0);
+					canInsert = false;
+				}
+				
+				if(data.isThatIDouble(fcStr)) {
+					fc = data.convertToDoubleBasic(fcStr);
+				}else {
+					CustomNotification("Probléma van a Front Camber",0);
+					canInsert = false;
+				}
+				
+				if(data.isThatIDouble(ftStr)) {
+					ft = data.convertToDoubleBasic(ftStr);
+				}else {
+					CustomNotification("Probléma van a Front Toe",0);
+					canInsert = false;
+				}
+				
+				if(data.isThatIDouble(rtStr)) {
+					rt = data.convertToDoubleBasic(rtStr);
+				}else {
+					CustomNotification("Probléma van a Rear Toe",0);
+					canInsert = false;
+				}
+				
+				if(data.isThatInt(fsStr)) {
+					fs = data.convertToIntBasic(fsStr);
+				}else {
+					CustomNotification("Probléma van a Front Suspension",0);
+					canInsert = false;
+				}
+				
+				if(data.isThatInt(rsStr)) {
+					rs = data.convertToIntBasic(rsStr);
+				}else {
+					CustomNotification("Probléma van a Rear Suspension",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatInt(farbStr)) {
+					farb = data.convertToIntBasic(farbStr);
+				}else {
+					CustomNotification("Probléma van a Front Anti-Roll Bar ",0);
+					canInsert = false;
+				}
+								
+				if(data.isThatInt(rarbStr)) {
+					rarb = data.convertToIntBasic(rarbStr);
+				}else {
+					CustomNotification("Probléma van a Rear Anti-Roll Bar ",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatInt(rrhStr)) {
+					rrh = data.convertToIntBasic(rrhStr);
+				}else {
+					CustomNotification("Probléma van a Rear Ride Height",0);
+					canInsert = false;
+				}
+				
+
+				if(data.isThatInt(bpStr)) {
+					bp = data.convertToIntBasic(bpStr);
+				}else {
+					CustomNotification("Probléma van a Brake Pressure",0);
+					canInsert = false;
+				}
+								
+				if(data.isThatInt(fbbStr)) {
+					fbb = data.convertToIntBasic(fbbStr);
+				}else {
+					CustomNotification("Probléma van a Front Brake Bias",0);
+					canInsert = false;
+				}
+				
+				
+				if(data.isThatInt(balanceStr)) {
+					balance = data.convertToIntBasic(balanceStr);
+				}else {
+					CustomNotification("Probléma van a Ballast",0);
+					canInsert = false;
+				}
+				
+				
+				if(canInsert) {
+					String sqlp = "insert into setup values ("+id+", "+carID+", '"+name+"', "+fwa+", "+rwa+", "+daont+", "+daofft+", "+fc+", "+rc+", "+ft+", "+rt+", "+fs+", "+rs+", "+farb+", "+rarb+", "+frh+", "+rrh+", "+bp+", "+fbb+", "+tftp+", "+rtp+", "+balance+");";
+					System.out.println(sqlp);
+					dbm.CommandExecute(sqlp);
+					CustomNotification("Hozzáadva", 1);
+				}
+				
+				
+				
+			}
+		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnAdd.setBounds(613, 259, 80, 37);
 		getContentPane().add(btnAdd);
@@ -335,21 +577,26 @@ public class AddSetup extends JDialog {
 		lblPsi_2_2.setBounds(673, 76, 25, 18);
 		getContentPane().add(lblPsi_2_2);
 		
-		textField_18 = new JTextField();
-		textField_18.setColumns(10);
-		textField_18.setBounds(539, 73, 130, 19);
-		getContentPane().add(textField_18);
+		bpF = new JTextField();
+		bpF.setColumns(10);
+		bpF.setBounds(539, 73, 130, 19);
+		getContentPane().add(bpF);
 		
 		JLabel lblPsi_2_2_1 = new JLabel("%");
 		lblPsi_2_2_1.setFont(new Font("Mongolian Baiti", Font.PLAIN, 15));
 		lblPsi_2_2_1.setBounds(673, 120, 25, 18);
 		getContentPane().add(lblPsi_2_2_1);
 		
-		textField_19 = new JTextField();
-		textField_19.setColumns(10);
-		textField_19.setBounds(539, 117, 130, 19);
-		getContentPane().add(textField_19);
+		fbbF = new JTextField();
+		fbbF.setColumns(10);
+		fbbF.setBounds(539, 117, 130, 19);
+		getContentPane().add(fbbF);
 
 	}
+	
+	public static void CustomNotification(String msg, int sign) {
+		JOptionPane.showMessageDialog(null, msg, "Vigyázat!", sign);
+	}
+
 
 }
