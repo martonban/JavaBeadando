@@ -159,7 +159,7 @@ public class UpdateCar extends JDialog {
 					CustomNotification("Nem szám típusú az MGUK",0);
 				}
 				
-				String esStr = mgukField.getText();
+				String esStr = esField.getText();
 				int es = 0;
 				if(data.isThatInt(esStr)){
 					es = data.convertToIntBasic(esStr);
