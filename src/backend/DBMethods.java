@@ -72,7 +72,22 @@ public class DBMethods {
 	}
 	
 	
-	
+	public int signIn(String name, String pswd) {
+		Connect();
+		int pc = -1;
+		String sqlp = "select count(*) pc from user where name ='"+name+"' and pass='"+pswd+"';";
+		try {
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				pc = rs.getInt("pc");
+			}
+			rs.close();
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return pc;
+	}
 	
 	
 	

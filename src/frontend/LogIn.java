@@ -7,17 +7,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backend.DBMethods;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LogIn extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private DBMethods dbm = new DBMethods();
 
 	/**
 	 * Launch the application.
@@ -39,6 +47,8 @@ public class LogIn extends JFrame {
 	 * Create the frame.
 	 */
 	public LogIn() {
+		dbm.Reg();
+		dbm.Connect();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 731, 369);
 		contentPane = new JPanel();
@@ -78,8 +88,27 @@ public class LogIn extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton btnNewButton = new JButton("Log In");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String username = textField.getText();
+				String pswd = passwordField.getText();
+				int succses = dbm.signIn(username, pswd);
+				if(succses == 1) {
+					System.out.println("Sikeres Bejentekezés");
+					dispose();
+				}else {
+					CustomNotification("Sikertelen Bejelentkezés", 0);
+				}
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Mongolian Baiti", Font.BOLD, 16));
 		btnNewButton.setBounds(567, 293, 113, 29);
 		contentPane.add(btnNewButton);
+	}
+	
+	public static void CustomNotification(String msg, int sign) {
+		JOptionPane.showMessageDialog(null, msg, "Vigyázat!", sign);
 	}
 }
