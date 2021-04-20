@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 
-public class ShowSetup extends JDialog {
+public class DeleteTyre extends JDialog {
 
 	/**
 	 * Launch the application.
@@ -13,7 +13,7 @@ public class ShowSetup extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShowSetup dialog = new ShowSetup();
+					DeleteTyre dialog = new DeleteTyre();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e) {
@@ -26,7 +26,7 @@ public class ShowSetup extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ShowSetup() {
+	public DeleteTyre() {
 		setBounds(100, 100, 450, 300);
 
 	}
