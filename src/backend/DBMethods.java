@@ -18,6 +18,40 @@ public class DBMethods {
 	private Connection conn = null;
 	private ResultSet rs = null;
 	
+	//############################################################################
+	//CompareDriver Methods
+	
+	public int intReturnFromDB(String tableName, String fieldName, String idName, int id){
+		int result = 0;
+		String sqlp = "select "+fieldName+" from "+tableName+" where "+idName+" = "+ id+";";
+		try {
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				result = rs.getInt(fieldName);
+			}
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		return result;
+	}
+	
+	
+	public int countRows(String tableName, String fieldName, String idName, int id){
+		int result = 0;
+		String sqlp = "select count("+fieldName+") as sum from "+tableName+" where "+idName+" = "+ id+";";
+		try {
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				result = rs.getInt("sum");
+			}
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		return result;
+	}
+	
 
 	//############################################################################
 	//Methods
