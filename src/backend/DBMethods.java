@@ -1,5 +1,8 @@
 package backend;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,12 +10,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class DBMethods {
 	
 	private Statement s = null;
 	private Connection conn = null;
 	private ResultSet rs = null;
-	
 	
 
 	//############################################################################
@@ -133,6 +137,95 @@ public class DBMethods {
 		}
 		
 	}
+	
+	
+
+	public void PrintToFileLapTime(String x, String path) {
+		String track, compound, sector1, sector2, sector3 = null;
+		int lid, did, sid = 0;
+		String sqlp = "select lid, track, did, compound, sector1, sector2, sector3, sid from laptime";
+		try {
+			Connect();
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				track = rs.getString("track");
+				compound = rs.getString("compound");
+				sector1 = rs.getString("sector1");
+				sector2 = rs.getString("sector2");
+				sector3 = rs.getString("sector3");
+				lid = rs.getInt("lid");
+				did = rs.getInt("did");
+				sid = rs.getInt("sid");
+				InsertLapTimes(lid, track, did, compound, sector1, sector2, sector3, sid, x, path);
+			}
+			rs.close();
+		}catch(SQLException e) {
+			System.out.println("asd");
+		}
+		disConnect();
+	}
+	
+
+	public static void InsertLapTimes(int lid, String track, int did, String compound, String sector1, String sector2, String sector3, int sid, String x, String path) {
+		try {
+			PrintStream out = new PrintStream(new FileOutputStream (path, true));
+			out.println(lid+x+track+x+did+x+compound+x+sector1+x+sector2+x+sector3+x+sid);
+			out.close();
+		}catch(IOException e) {
+			CustomNotification("Problem!", 0);
+		}
+	}
+	
+	
+	
+	public void PrintToFileUsers(String x, String path) {
+		String name, pass, position, birthday = null;
+		int uid, salary, dayoff, canedit = 0;
+		String sqlp = "select uid, name, pass, salary, position, dayoff, birthday, canedit from user";
+		try {
+			Connect();
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				name = rs.getString("name");
+				pass = rs.getString("pass");
+				position = rs.getString("position");
+				birthday = rs.getString("birthday");
+				uid = rs.getInt("uid");
+				salary = rs.getInt("salary");
+				dayoff = rs.getInt("dayoff");
+				canedit = rs.getInt("canedit");
+				InsertUser(uid, name, pass, salary, position, dayoff, birthday, canedit, x, path);
+			}
+			rs.close();
+		}catch(SQLException e) {
+			System.out.println("asd");
+		}
+		disConnect();
+	}
+	
+
+	public static void InsertUser(int uid, String name, String pass, int salary, String position, int dayoff, String birthday, int canedit, String x, String path) {
+		try {
+			PrintStream out = new PrintStream(new FileOutputStream (path, true));
+			out.println(uid+x+name+x+pass+x+salary+x+position+x+dayoff+x+birthday+x+canedit);
+			out.close();
+		}catch(IOException e) {
+			CustomNotification("Problem!", 0);
+		}
+	}
+	
+	
+	
+	
+	
+	public static void CustomNotification(String msg, int sign) {
+		JOptionPane.showMessageDialog(null, msg, "Vigyázat!", sign);
+	}
+		
+
+	
 	
 	
 	
