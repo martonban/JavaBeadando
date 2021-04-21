@@ -72,6 +72,37 @@ public class DBMethods {
 	}
 	
 	
+	public PartTM ReadAllPart() {
+		Object partTm[] = {"Jel","Pid","Name","Part IN","Price","Location", "link"};
+		PartTM ptm = new PartTM(partTm, 0);
+		String name="", partin="", location="", link="";
+		int id=0, price=0;
+		String sqlp = "select pid, partname, partin, price, location, link from part";
+		Connect();
+		try {
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				name = rs.getString("partname");
+				partin = rs.getString("partin");
+				location = rs.getString("location");
+				link = rs.getString("link");
+				id = rs.getInt("pid");
+				price = rs.getInt("price");
+				
+				ptm.addRow(new Object[] {false, id, name, partin, price, location, link});
+				
+			}
+			rs.close();
+		}catch(SQLException e) {
+			System.out.println("asd");
+		}
+		disConnect();
+		return ptm;
+	}
+	
+	
+	
 	public int signIn(String name, String pswd) {
 		Connect();
 		int pc = -1;
@@ -125,6 +156,16 @@ public class DBMethods {
 			System.out.println("Sikeres driver regisztráció!");
 		}catch(ClassNotFoundException e){
 			System.out.println("hibás driver regisztráció!" +e.getMessage());
+		}
+	}
+	
+	
+	public void disConnect() {
+		try {
+			conn.close();
+			System.out.println("Disconnected!");
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
