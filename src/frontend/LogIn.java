@@ -95,7 +95,8 @@ public class LogIn extends JFrame {
 				String pswd = passwordField.getText();
 				int succses = dbm.signIn(username, pswd);
 				if(succses == 1) {
-					System.out.println("Sikeres Bejentekezés");
+					MainMenu mm = new MainMenu();
+					mm.setVisible(true);
 					dispose();
 				}else {
 					CustomNotification("Sikertelen Bejelentkezés", 0);

@@ -17,6 +17,7 @@ public class DBMethods {
 	private Statement s = null;
 	private Connection conn = null;
 	private ResultSet rs = null;
+	private FileManager fm = new FileManager();
 	
 	//############################################################################
 	//CompareDriver Methods
@@ -191,7 +192,7 @@ public class DBMethods {
 				lid = rs.getInt("lid");
 				did = rs.getInt("did");
 				sid = rs.getInt("sid");
-				InsertLapTimes(lid, track, did, compound, sector1, sector2, sector3, sid, x, path);
+				fm.InsertLapTimes(lid, track, did, compound, sector1, sector2, sector3, sid, x, path);
 			}
 			rs.close();
 		}catch(SQLException e) {
@@ -201,16 +202,6 @@ public class DBMethods {
 	}
 	
 
-	public static void InsertLapTimes(int lid, String track, int did, String compound, String sector1, String sector2, String sector3, int sid, String x, String path) {
-		try {
-			PrintStream out = new PrintStream(new FileOutputStream (path, true));
-			out.println(lid+x+track+x+did+x+compound+x+sector1+x+sector2+x+sector3+x+sid);
-			out.close();
-		}catch(IOException e) {
-			CustomNotification("Problem!", 0);
-		}
-	}
-	
 	
 	
 	public void PrintToFileUsers(String x, String path) {
@@ -230,7 +221,7 @@ public class DBMethods {
 				salary = rs.getInt("salary");
 				dayoff = rs.getInt("dayoff");
 				canedit = rs.getInt("canedit");
-				InsertUser(uid, name, pass, salary, position, dayoff, birthday, canedit, x, path);
+				fm.InsertUser(uid, name, pass, salary, position, dayoff, birthday, canedit, x, path);
 			}
 			rs.close();
 		}catch(SQLException e) {
@@ -240,15 +231,7 @@ public class DBMethods {
 	}
 	
 
-	public static void InsertUser(int uid, String name, String pass, int salary, String position, int dayoff, String birthday, int canedit, String x, String path) {
-		try {
-			PrintStream out = new PrintStream(new FileOutputStream (path, true));
-			out.println(uid+x+name+x+pass+x+salary+x+position+x+dayoff+x+birthday+x+canedit);
-			out.close();
-		}catch(IOException e) {
-			CustomNotification("Problem!", 0);
-		}
-	}
+	
 	
 	
 	
