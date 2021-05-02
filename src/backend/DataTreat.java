@@ -85,6 +85,7 @@ public class DataTreat {
 	
 	
 	//############################	Basic Data Type	 ############################
+	
 	public boolean isEmpty(String varriable) {
 		if(varriable.equals("") || varriable.isBlank() || varriable.equals(null)) {
 			return true;

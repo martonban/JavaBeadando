@@ -22,9 +22,6 @@ public class ListPart extends JDialog {
 	private JTable table;
 	private PartTM ptm;
 
-
-
-
 	/**
 	 * Create the dialog.
 	 */

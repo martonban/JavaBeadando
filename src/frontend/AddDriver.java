@@ -135,6 +135,11 @@ public class AddDriver extends JDialog {
 				
 				int number = 0;
 				String numberOfDriver = numberField.getText();
+				String name = nameField.getText();
+				String startStr = startField.getText();
+				String avgFinishStr = avgField.getText();
+				
+				
 				if(data.isThatInt(numberOfDriver)) {
 					number = data.convertToIntBasic(numberOfDriver);
 				}else {
@@ -142,13 +147,13 @@ public class AddDriver extends JDialog {
 					CustomNotification("A Versenyzõ száma nem szám típusú",0);
 				}
 				
-				String name = nameField.getText();
+				
 				if(data.isEmpty(name)) {
 					canInsert = false;
 					CustomNotification("A Versenyzõ neve mezejében nincsen semmi",0);
 				}
 				
-				String startStr = startField.getText();
+				
 				int start = 0;
 				if(data.isThatInt(startStr)) {
 					start = data.convertToIntBasic(startStr);
@@ -158,7 +163,7 @@ public class AddDriver extends JDialog {
 				}
 				
 				
-				String avgFinishStr = avgField.getText();
+				
 				double avgFinish = 0;
 				if(data.isThatIDouble(avgFinishStr)) {
 					avgFinish = data.convertToDoubleBasic(avgFinishStr); 
