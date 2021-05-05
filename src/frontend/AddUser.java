@@ -136,6 +136,11 @@ public class AddUser extends JDialog {
 					
 				}
 				
+				if(dbm.existStuffString("user", "name", name) == false) {
+					canInsert = false;
+					CustomNotification("Már létezõ felhasználónév", 0);
+				}
+				
 				if(data.isThatDate(date) == false) {
 					canInsert = false;
 					CustomNotification("Hibás dátum", 0);

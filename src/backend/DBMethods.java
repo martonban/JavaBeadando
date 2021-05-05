@@ -111,6 +111,40 @@ public class DBMethods {
 	}
 	
 	
+	public ArrayList<String> dataToArrayListString(String tableName, String fieldName){
+		ArrayList<String> ids = new ArrayList<String>();
+		String sqlp = "select "+fieldName+" from "+tableName+";";
+		try {
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				ids.add(rs.getString(fieldName));
+			}
+		}catch(SQLException e) {
+			System.out.println("Problem");
+		}
+		return ids;
+	}
+	
+	public boolean existStuffString(String tableName, String fieldName, String find) {
+		ArrayList<String> ids = dataToArrayListString(tableName, fieldName);
+		int size = ids.size();
+		for(int i = 0; i<size; i++) {
+			if(ids.get(i).equals(find)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public PartTM ReadAllPart() {
 		Object partTm[] = {"Jel","Pid","Name","Part IN","Price","Location", "link"};
 		PartTM ptm = new PartTM(partTm, 0);
