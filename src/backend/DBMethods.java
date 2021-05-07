@@ -285,7 +285,7 @@ public class DBMethods {
 	
 	public void Connect(){
 		try{
-			String url = "jdbc:sqlite:C:/Users/Marci/Documents/Egyetem (BSC)/4. félév/Adatbázis rendszerk II/DatabaseGyak01/f1team.db";
+			String url = "jdbc:sqlite:DataBase/f1team.db";
 			conn = DriverManager.getConnection(url);
 			System.out.println(" OK!");
 		}catch(SQLException e) {
