@@ -66,7 +66,7 @@ public class Convert extends JDialog {
 		getContentPane().add(lblTabel);
 		
 		
-		String formatum[] = {".txt", ".csv"};
+		String formatum[] = {".txt", ".csv", ".dat"};
 		for (String s: formatum) formatBox.addItem(s);
 		
 		String tablak[] = {"laptime", "user"};
@@ -83,17 +83,21 @@ public class Convert extends JDialog {
 					String fullPath = path + "/laptime" + format; 
 					if(format.equals(".txt")) {
 						dbm.PrintToFileLapTime("\t", fullPath);
-					}else {
+					}else if(format.equals(".csv")) {
 						dbm.PrintToFileLapTime(";", fullPath);
-					}	
+					}else {
+						dbm.PrintToFileLapTimeDat("", fullPath);
+					}
 				}
 				
 				if(table.equals("user")) {
 					String fullPath = path + "/user" + format; 
 					if(format.equals(".txt")) {
 						dbm.PrintToFileUsers("\t", fullPath);
-					}else {
+					}else if(format.equals(".csv")) {
 						dbm.PrintToFileUsers(";", fullPath);
+					}else {
+						dbm.PrintToFileUsersDat("", fullPath);
 					}
 					
 				}

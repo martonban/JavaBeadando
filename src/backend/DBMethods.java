@@ -264,6 +264,62 @@ public class DBMethods {
 		disConnect();
 	}
 	
+	
+	public void PrintToFileLapTimeDat(String x, String path) {
+		String track, compound, sector1, sector2, sector3 = null;
+		int lid, did, sid = 0;
+		String sqlp = "select lid, track, did, compound, sector1, sector2, sector3, sid from laptime";
+		try {
+			Connect();
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				track = rs.getString("track");
+				compound = rs.getString("compound");
+				sector1 = rs.getString("sector1");
+				sector2 = rs.getString("sector2");
+				sector3 = rs.getString("sector3");
+				lid = rs.getInt("lid");
+				did = rs.getInt("did");
+				sid = rs.getInt("sid");
+				fm.InsertLapTimesDat(lid, track, did, compound, sector1, sector2, sector3, sid, x, path);
+			}
+			rs.close();
+		}catch(SQLException e) {
+			System.out.println("asd");
+		}
+		disConnect();
+	}
+	
+
+	
+	
+	public void PrintToFileUsersDat(String x, String path) {
+		String name, pass, position, birthday = null;
+		int uid, salary, dayoff, canedit = 0;
+		String sqlp = "select uid, name, pass, salary, position, dayoff, birthday, canedit from user";
+		try {
+			Connect();
+			s = conn.createStatement();
+			rs = s.executeQuery(sqlp);
+			while(rs.next()) {
+				name = rs.getString("name");
+				pass = rs.getString("pass");
+				position = rs.getString("position");
+				birthday = rs.getString("birthday");
+				uid = rs.getInt("uid");
+				salary = rs.getInt("salary");
+				dayoff = rs.getInt("dayoff");
+				canedit = rs.getInt("canedit");
+				fm.InsertUserDat(uid, name, pass, salary, position, dayoff, birthday, canedit, x, path);
+			}
+			rs.close();
+		}catch(SQLException e) {
+			System.out.println("asd");
+		}
+		disConnect();
+	}
+	
 
 	
 	
